@@ -55,6 +55,7 @@ import { createEventDispatcher } from "svelte";
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 1em;
+        margin-bottom: 1em;
 
         p {
             border: 2px solid @colors[light];
@@ -119,9 +120,11 @@ import { createEventDispatcher } from "svelte";
             padding: 0.25em;
         }
 
-        button {
-            font-size: 1.25em;
-            padding: 0.25em;
+        div.btn {
+            button {
+                font-size: 1.25em;
+                padding: 0.25em;
+            }
         }
     }
 </style>

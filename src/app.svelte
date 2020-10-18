@@ -102,8 +102,7 @@
     }
 
     main.top {
-        background-image: linear-gradient(180deg, fade(darken(@colors[dark], 10%), 50%), fade(lighten(@colors[dark], 10%), 50%)),
-            linear-gradient(-90deg, fade(darken(@colors[dark], 10%), 50%), fade(lighten(@colors[dark], 10%), 50%));
+        background-color: @colors[dark];
         padding: 0.5em;
         min-height: 100vh;
         max-width: 800px;
@@ -136,13 +135,27 @@
 
     @media screen and (max-width: 600px) {
         main.top {
-            div {
+            div.header {
                 h1 {
                     font-size: 2.5em;
                 }
 
                 h2 {
                     font-size: 1.5em;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        main.top {
+            div.header {
+                h1 {
+                    font-size: 2em;
+                }
+
+                h2 {
+                    font-size: 1.25em;
                 }
             }
         }
