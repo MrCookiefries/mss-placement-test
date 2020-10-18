@@ -40,6 +40,10 @@ import { createEventDispatcher } from "svelte";
         dark: hsla(0, 0%, 22%, 1);
     }
 
+    .round(@input) {
+        border-radius: @input;
+    }
+
     h2 {
         font-size: 2em;
         color: @colors[main];
@@ -47,7 +51,7 @@ import { createEventDispatcher } from "svelte";
         margin-bottom: 1em;
     }
 
-    div {
+    div.answers {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 1em;
@@ -59,9 +63,12 @@ import { createEventDispatcher } from "svelte";
             text-align: center;
             font-size: 1.25em;
             font-weight: 500;
+            .round(1em);
+            transition: transform ease-in-out 400ms;
 
             &:hover {
                 cursor: pointer;
+                transform: scale(0.9);
             }
         }
 
@@ -75,25 +82,30 @@ import { createEventDispatcher } from "svelte";
         }
     }
 
-    button {
+    div.btn {
+        display: grid;
+        justify-content: right;
+
+        button {
         padding: 0.5em;
         font-size: 1.5em;
         color: @colors[main];
         border: 2px solid @colors[light];
         text-align: center;
         background-color: @colors[dark];
-        display: block;
-        position: relative;
-        left: 100%;
-        transform: translateX(-100%);
+        .round(1em);
+        transition: transform ease-in-out 400ms;
 
-        &:disabled {
-            display: none;
-        }
+            &:disabled {
+                display: none;
+            }
 
-        &:hover {
-            color: @colors[light];
-            border-color: @colors[main];
+            &:hover {
+                color: @colors[light];
+                border-color: @colors[main];
+                cursor: pointer;
+                transform: scale(0.9);
+            }
         }
     }
 
@@ -102,7 +114,7 @@ import { createEventDispatcher } from "svelte";
             font-size: 1.25em;
         }
 
-        div p {
+        div.answers p {
             font-size: 1em;
             padding: 0.25em;
         }
@@ -117,7 +129,7 @@ import { createEventDispatcher } from "svelte";
 <h2>
     {question.question}
 </h2>
-<div>
+<div class="answers">
     {#each answers as answer}
         <p class:selected={selection === answer} on:click="{() => makeSelection(answer)}">
             {answer}
@@ -127,6 +139,8 @@ import { createEventDispatcher } from "svelte";
         {question.idk}
     </p>
 </div>
-<button on:click="{() => next()}" type="button" {disabled}>
-    Continue
-</button>
+<div class="btn">
+    <button on:click="{() => next()}" type="button" {disabled}>
+        Continue
+    </button>
+</div>

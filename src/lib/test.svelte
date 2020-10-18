@@ -1,5 +1,6 @@
 <script lang="ts">
 import Question from "./question.svelte";
+import Level from "./level.svelte";
 
     let promiseError = false;
     let isTesting = true;
@@ -93,8 +94,20 @@ import Question from "./question.svelte";
 </script>
 
 <style lang="less">
-    h2 {
+    @colors: {
+        main: hsla(175, 100%, 72%, 1);
+        accent: hsla(130, 100%, 72%, 1);
+        light: hsla(0, 0%, 100%, 1);
+        dark: hsla(0, 0%, 22%, 1);
+    }
 
+    h2 {
+        text-align: center;
+
+        &.error {
+            color: @colors[main];
+            font-weight: 800;
+        }
     }
 
     section {
@@ -103,17 +116,19 @@ import Question from "./question.svelte";
 </style>
 
 {#await promise}
-    <h2>Loading your test...</h2>
+    <h2 class="loading">Loading your test...</h2>
 {:then pop}
     {#if promiseError}
-        <h2>Error loading test!</h2>
+        <h2 class="error">Error loading test!</h2>
     {:else}
         {#if isTesting}
             <section>
                 <Question question={question} on:continue="{continueTest}"/>
             </section>
         {:else}
-            <p>You got level {level}</p>
+            <section>
+                <Level {level}/>
+            </section>
         {/if}
     {/if}
 {/await}
