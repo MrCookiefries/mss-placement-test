@@ -2,11 +2,11 @@
     export let level;
     let levelName;
     switch (level) {
-        case 1: levelName = "Cheeto Puff"; break;
-        case 2: levelName = "Cheeto"; break;
-        case 3: levelName = "Hot Cheeto"; break;
-        case 4: levelName = "Flaming Hot Cheeto"; break;
-        case 5: levelName = "Taki"; break;
+        case 1: levelName = "(1) One"; break;
+        case 2: levelName = "(2) Two"; break;
+        case 3: levelName = "(3) Three"; break;
+        case 4: levelName = "(4) Four"; break;
+        case 5: levelName = "(5) Five"; break;
         default: levelName = "Undetermined"; break;
     }
 </script>
@@ -48,7 +48,7 @@
 
 <div>
     <h2>
-        Congrats you're a
+        Congrats you're in level
         <span id="class">
             {levelName}!
         </span>
